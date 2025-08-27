@@ -11,9 +11,6 @@ def debug_price(url, proxy=None):
             args=["--disable-blink-features=AutomationControlled"]
         )
 
-        # ← Create a context that uses your proxy:
-        # proxy should be a dict like:
-        # { "server": "http://proxy:8000", "username": "user", "password": "pass" }
         context = browser.new_context(
             proxy=proxy,
             user_agent=(
@@ -30,7 +27,7 @@ def debug_price(url, proxy=None):
         page.goto(url, wait_until="networkidle")
         page.wait_for_timeout(3000)
 
-        # 2) Dump visible text and scan for a price
+        #scan price from visible text
         body_text = page.locator("body").inner_text()
         print("Body text snippet:", body_text)
         match = re.search(r"\$\s*[\d,]+(?:\.\d{2})?", body_text)

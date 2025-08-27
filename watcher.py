@@ -124,23 +124,23 @@ def check_price_and_stock(html):
     - price: first occurrence of $X,XXX.XX
     - in_stock: False if keywords like "unavailable", "out of stock", "backordered" appear
     """
-    # 1) Price via regex
+    #Price
     match = re.search(r"\$\s?[\d,]+\.\d{2}", html)
     price = match.group(0) if match else "n/a"
 
-    # 2) Stock status via keywords
+    #Stock status
     lc = html.lower()
     if "in stock" or "available"in lc:
         in_stock = True
 
-    # 2) Backordered check
+    #Backordered check
     if "backordered" in lc:
         in_stock = "backordered"
 
     if "in stock" and "backordered" in lc:
         in_stock = "in stock but backordered"
 
-    # 3) Out of stock / unavailable check
+    #Out of stock / unavailable check
     for kw in ("out of stock", "unavailable"):
         if kw in lc:
             in_stock = False
