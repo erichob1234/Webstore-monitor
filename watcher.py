@@ -8,8 +8,6 @@ import time
 from datetime import datetime, timezone 
 
 #functions*********
-
-
 webhookurl = "https://discord.com/api/webhooks/1391859279480229928/gjK1GuVNNtm0M7aud2GA7r_jB3FE683nMu-ED3kMLb2pf3MDi6Qd-13Af28CXt59T1Yl"
 if not webhookurl:
     raise RuntimeError("Please set DISCORD_WEBHOOK_URL in your environment")

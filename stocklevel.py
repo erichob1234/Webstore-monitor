@@ -2,7 +2,8 @@ from playwright.sync_api import sync_playwright
 from playwright_stealth import Stealth
 import re
 
-def debug_price(url, proxy=None):
+#suprisingly headless browser works worse
+def price(url, proxy=None):
     with Stealth().use_sync(sync_playwright()) as pw:
         browser = pw.chromium.launch(
             headless=False,
@@ -23,6 +24,7 @@ def debug_price(url, proxy=None):
             extra_http_headers={"Accept-Language": "en-CA,en;q=0.9"},
         )
 
+        #timout if getting no where
         page = context.new_page()
         page.goto(url, wait_until="networkidle")
         page.wait_for_timeout(3000)
@@ -40,7 +42,7 @@ def debug_price(url, proxy=None):
 
 if __name__ == "__main__":
     proxy_conf = proxies =  { "server": "http://207.246.206.97:8888", "username": "7zuFZFbF", "password": "4RJgcH6L"  }
-    debug_price(
+    price(
         "https://www.adidas.ca/en/ultraboost-1.0-shoes/HQ4202.html",
         proxy=proxy_conf
     )
