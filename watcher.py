@@ -13,7 +13,7 @@ if not webhookurl:
     raise RuntimeError("Please set DISCORD_WEBHOOK_URL in your environment")
 
 #function to choose random static proxy to use
-proxies = [***CONFIDENTIAL******]
+proxies = [ts confidential]
 def get_proxy():
     if proxies and proxies[0]:
         p = random.choice(proxies)
